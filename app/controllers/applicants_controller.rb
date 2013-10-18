@@ -1,4 +1,5 @@
 class ApplicantsController < ApplicationController
+  include ApplicationHelper
   before_action :set_applicant, only: [:show, :edit, :update, :destroy]
 
   # GET /applicants
@@ -15,6 +16,7 @@ class ApplicantsController < ApplicationController
   # GET /applicants/new
   def new
     @applicant = Applicant.new
+    @skill = Skill.new
   end
 
   # GET /applicants/1/edit
@@ -28,6 +30,7 @@ class ApplicantsController < ApplicationController
 
     respond_to do |format|
       if @applicant.save
+        update_skills(@applicant)
         format.html { redirect_to @applicant, notice: 'Applicant was successfully created.' }
         format.json { render action: 'show', status: :created, location: @applicant }
       else
@@ -42,6 +45,7 @@ class ApplicantsController < ApplicationController
   def update
     respond_to do |format|
       if @applicant.update(applicant_params)
+        update_skills(@applicant)
         format.html { redirect_to @applicant, notice: 'Applicant was successfully updated.' }
         format.json { head :no_content }
       else
@@ -71,4 +75,5 @@ class ApplicantsController < ApplicationController
     def applicant_params
       params.require(:applicant).permit(:name, :contacts, :status, :salary)
     end
+
 end

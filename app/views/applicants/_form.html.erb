@@ -1,5 +1,13 @@
 <%= semantic_form_for @applicant do |f| %>
   <%= f.semantic_errors %>
-  <%= f.inputs %>
+  <%= f.inputs do %>
+    <%= f.input :status, label: t('applicant.lf.job', default: 'Looking for job?') %>
+    <%= f.input :name %>
+    <%= f.input :salary %>
+    <%= f.input :contacts %>
+  <% end %>
+  <div class="stringish">
+  <%= text_field_tag :skills_names, @applicant.skills_names, name: 'skill[names]' %>
+  </div>
   <%= f.actions %>
 <% end %>

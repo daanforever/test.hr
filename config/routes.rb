@@ -1,5 +1,7 @@
 TestsHr::Application.routes.draw do
-  resources :skills
+  resources :skills do
+    get :find, on: :collection
+  end
 
   resources :applicants
   resources :vacancies

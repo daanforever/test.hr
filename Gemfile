@@ -53,8 +53,8 @@ gem 'awesome_print'                   # For rails console
 gem 'thin'                            # Web server
 gem 'foreman'                         # Process organizer
 
-gem 'formtastic'                      # Rails FormBuilder DSL
-gem 'formtastic-bootstrap'            # Formtastic integration with bootstrap
+gem 'formtastic', github: 'justinfrench/formtastic'                      # Rails FormBuilder DSL
+gem 'formtastic-bootstrap', github: 'mjbellantoni/formtastic-bootstrap'            # Formtastic integration with bootstrap
 gem 'jquery-ui-rails'                 # jQuery UI
 
 group :development do

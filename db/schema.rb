@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20131017172614) do
   create_table "applicants", force: true do |t|
     t.string   "name"
     t.text     "contacts"
-    t.string   "status"
+    t.boolean  "status"
     t.integer  "salary"
     t.datetime "created_at"
     t.datetime "updated_at"

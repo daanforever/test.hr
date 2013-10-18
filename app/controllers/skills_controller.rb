@@ -61,6 +61,17 @@ class SkillsController < ApplicationController
     end
   end
 
+  # GET /skills/auto?term=
+  def find
+    respond_to do |format|
+      term = params[:term].split(/,/)
+      prefix = (term.to_a - [term.last]).join(',') + ", " if term.size > 1
+      logger.warn("TERM=#{term} PREFIX=#{prefix}")
+      @skills = Skill.where("name LIKE ?", "#{term.last.lstrip}%")
+      format.html { render json: @skills.map{ |s| "#{prefix}#{s.name}" } }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_skill

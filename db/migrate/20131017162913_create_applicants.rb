@@ -3,7 +3,7 @@ class CreateApplicants < ActiveRecord::Migration
     create_table :applicants do |t|
       t.string :name
       t.text :contacts
-      t.string :status
+      t.boolean :status
       t.integer :salary
 
       t.timestamps
