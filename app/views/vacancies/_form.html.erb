@@ -1,5 +1,9 @@
 <%= semantic_form_for @vacancy do |f| %>
   <%= f.semantic_errors %>
   <%= f.inputs %>
+  <div class="stringish">
+  <%= label_tag :skills, t('vacancy.label.skills', default: 'Skills') %>
+  <%= text_field_tag :skills_names, @vacancy.skills_names, name: 'skill[names]' %>
+  </div>
   <%= f.actions %>
 <% end %>

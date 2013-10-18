@@ -1,11 +1,17 @@
 class ApplicantsController < ApplicationController
-  include ApplicationHelper
   before_action :set_applicant, only: [:show, :edit, :update, :destroy]
 
   # GET /applicants
   # GET /applicants.json
   def index
-    @applicants = Applicant.all
+    unless params[:vacancy_id]
+      @applicants = Applicant.all
+      @applicants_full = nil
+    else
+      @applicants = Vacancy.find(params[:vacancy_id]).applicants.where(status: true).order(:salary)
+      vac_skills = Vacancy.find(params[:vacancy_id]).skills.map{ |s| s.id }
+      @applicants_full = @applicants.select{ |app| app.skills.map{ |s| s.id } == vac_skills }
+    end
   end
 
   # GET /applicants/1

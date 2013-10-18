@@ -7,6 +7,7 @@
     <%= f.input :contacts %>
   <% end %>
   <div class="stringish">
+  <%= label_tag :skills, t('applicant.label.skills', default: 'Skills') %>
   <%= text_field_tag :skills_names, @applicant.skills_names, name: 'skill[names]' %>
   </div>
   <%= f.actions %>

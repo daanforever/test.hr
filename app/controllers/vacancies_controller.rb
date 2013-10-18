@@ -4,7 +4,14 @@ class VacanciesController < ApplicationController
   # GET /vacancies
   # GET /vacancies.json
   def index
-    @vacancies = Vacancy.all
+    unless params[:applicant_id]
+      @vacancies = Vacancy.all
+      @vacancies_full = nil
+    else
+      @vacancies = Applicant.find(params[:applicant_id]).vacancies.order(:salary).reverse
+      app_skills = Applicant.find(params[:applicant_id]).skills.map{ |s| s.id }
+      @vacancies_full = @vacancies.select{ |vac| vac.skills.map{ |s| s.id } == app_skills }
+    end
   end
 
   # GET /vacancies/1
@@ -28,6 +35,7 @@ class VacanciesController < ApplicationController
 
     respond_to do |format|
       if @vacancy.save
+        update_skills(@vacancy)
         format.html { redirect_to @vacancy, notice: 'Vacancy was successfully created.' }
         format.json { render action: 'show', status: :created, location: @vacancy }
       else
@@ -42,6 +50,7 @@ class VacanciesController < ApplicationController
   def update
     respond_to do |format|
       if @vacancy.update(vacancy_params)
+        update_skills(@vacancy)
         format.html { redirect_to @vacancy, notice: 'Vacancy was successfully updated.' }
         format.json { head :no_content }
       else

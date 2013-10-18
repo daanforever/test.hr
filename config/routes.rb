@@ -3,8 +3,13 @@ TestsHr::Application.routes.draw do
     get :find, on: :collection
   end
 
-  resources :applicants
-  resources :vacancies
+  resources :applicants do
+    resources :vacancies, only: [:index]
+  end
+
+  resources :vacancies do
+    resources :applicants, only: [:index]
+  end
 
   root 'start#index'
 
