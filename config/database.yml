@@ -24,3 +24,20 @@ production:
   database: db/production.sqlite3
   pool: 5
   timeout: 5000
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: your_app_development # name your development app something
+  host: localhost
+  pool: 5
+  username: your_username
+  password: your_password # or leave blank if you didn't set a password
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: your_app_test
+  host: localhost
+  pool: 5
+  username: your_username
+  password: your_password
