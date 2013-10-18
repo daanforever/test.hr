@@ -1,0 +1,6 @@
+<% environment.context_class.instance_eval { include Rails.application.routes.url_helpers } %>
+
+ready = -> $('#skills_names').autocomplete({ source: '<%= find_skills_url(only_path: true) %>'})
+
+$(document).ready(ready)
+$(document).on('page:load', ready)
