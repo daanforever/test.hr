@@ -69,4 +69,5 @@ group :test do
   gem 'rspec-rails'                   # Testing framework
   gem 'factory_girl_rails', '~> 4.0'  # Fixture replacement
   gem 'database_cleaner'              # Strategies for cleaning databases in Ruby
+  gem 'capybara'                      # Acceptance test framework for web applications
 end

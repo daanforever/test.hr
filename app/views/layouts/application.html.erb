@@ -58,8 +58,10 @@
     </div>
 
     <div class="container">
+        <%=  yield :hero %>
+
         <div class="row">
-          <div class="span9">
+          <div class="span12">
             <%= bootstrap_flash %>
             <%= yield %>
           </div>
